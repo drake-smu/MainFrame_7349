@@ -1,34 +1,60 @@
-\documentclass{IEEEtran}
+\documentclass[conference]{IEEEtran}
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\let\labelindent\relax
 
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{url}
-\usepackage{fontspec}
 \usepackage{outlines}
 \usepackage{blindtext}
 
-\title{Security Final Report}
-\author{David Josephs Hannah Kosinovsky Carson Drake Volodymyr Orlov}
-\date{January 2019}
-
 \begin{document}
 
+\title{Statistical Analysis of Advanced Encryption Standard}
+\author{\IEEEauthorblockN{David Josephs}
+\IEEEauthorblockA{\small Southern Methodist University\\
+Dallas, Texas\\
+Email: josephsd@smu.edu}
+\and
+\IEEEauthorblockN{Hannah Kosinovsky}
+\IEEEauthorblockA{\small Southern Methodist University\\
+Dallas, Texas\\
+Email: hkosinovsky@mail.smu.edu}
+\and
+\IEEEauthorblockN{Carson Drake}
+\IEEEauthorblockA{\small Southern Methodist University\\
+Dallas, Texas\\
+Email: drakec@smu.edu}
+\and
+\IEEEauthorblockN{Volodymyr Orlov}
+\IEEEauthorblockA{\small Southern Methodist University\\
+Dallas, Texas\\
+Email: vorlov@smu.edu}}
+
 \maketitle
+
 \begin{abstract}
-See Project Details
+Advanced Encryption Standard (AES) is one of the most common and widely used specification for the encryption of electronic data. AES is a block cipher with 128-bit internal state and 128/192/256-bit key (AES-128, AES-192, AES-256, respectively). No efficient attacks against AES are known up to date and the standard is considered practically secure. In this paper we perform an extensive statistical analysis of AES-128 output using NIST Statistical Test Suite and additional randomness tests with a goal to identify any bias in either the entirety of the encrypted output or in sequences of encryption blocks generated from input values created using a counter or a linear feedback shift register (LFSR). 
 \end{abstract}
+
+\IEEEpeerreviewmaketitle
+
 \section{Introduction}
-\begin{outline}
-\1 First thing in introduction
-\2 a bullet
-\3 another
-\1 second
-\1 third
-\end{outline}
 
+Advanced Encryption Standard is a symmetric key block cipher method established by the U.S. National Institute of Standards and Technology (NIST) in 2001. In AES the same key is used for both encrypting and decrypting the data. Since its introduction, AES has been adopted by the U.S. government and is now used for a variety of applications worldwide. There are three variants of AES: AES-128, AES-192 and AES-256, where the number after AES
+indicates the key length used for encryption and decryption process. Since its adoption, the world saw little progress in the cryptanalysis of this cipher.
 
+One of the basic properties of AES is indistinguishability of its output from a random sequence of bits. An evaluation of the cipher's output using randomness tests is an important tool in cryptanalysis that helps to ensure the algorithm produces no distinguishable patterns which can be used to deduce an encryption key or a plain text input. For this reason, the evaluation of the output of the AES by means of statistical randomness tests is of great importance. This paper will analyze randomness of the output produced by the AES-128 block cipher using NIST statistical test suite and (Name of additional test here, e.g. Diehard?).  
+
+\section{Statistical Randomness Tests}
+
+Statistical tests for randomness take arbitrary length input sequence and analyze its distribution to see if it is random and contains no recognizable patterns or regularities. Usually these tests produce a real number between 0 and 1, the p-value, which shows a probability of finding the observed, or more extreme, results with respect to certain randomness properties of the given input. There exists some Notable software implementations, like NIST Statistical Test Suite or Diehard tests that can be used to analyze output of AES-128. 
+
+The NIST Test Suite consists of 15 tests specially designed to analyze
+binary sequences. All NIST tests examine randomness for the whole binary sequence. In addition to that several tests are also able to detect local regularities. 
 
 %bibtex is not working on this cite but we can fix that later!
 \end{document}
