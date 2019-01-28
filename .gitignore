@@ -108,6 +108,12 @@ reports/*.aux
 reports/*.out
 reports/*.pdf
 reports/*.synctex.gz
+reports/*.bib
+reports/*.bbl
+reports/*.bcf
+reports/*.blg
+reports/*.run.xml
+
 
 # Mac
 .DS_Store
