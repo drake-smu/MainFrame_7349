@@ -8,6 +8,7 @@ def make_permutations(block_size):
             for j in range(i):
                 print(bin(1<<i|1<<j).zfill(block_size))
         else:
-            print(bin(1<<i).zfill(block_size))
+            for k in range(block_size-2):
+                print(bin(1<<k).zfill(block_size))
         print('-----cycle: %s-----'%(i))
 make_permutations(32)
