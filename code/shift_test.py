@@ -38,7 +38,7 @@ def low_density_generator(block_size):
         # print('-----cycle: %s-----'%(i))
     return resp
 
-test = high_density_generator(30)   # High Tensity Test
+# test = high_density_generator(30)   # High Tensity Test
 # test = low_density_generator(30)    # Low Density Test
 
-pprint.pprint(test)
+# pprint.pprint(test)

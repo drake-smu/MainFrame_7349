@@ -117,3 +117,6 @@ reports/*.run.xml
 
 # Mac
 .DS_Store
+
+# VSCode
+.vscode
