@@ -7,6 +7,7 @@ verify_ssl = true
 
 [packages]
 pycryptodome = "*"
+pprint = "*"
 
 [requires]
 python_version = "3.7"
