@@ -14,9 +14,10 @@ def high_density_generator(block_size):
     low_density= low_density_generator(block_size)
     resp = []
     for block in low_density:
-        temp = ''
-        for val in block: 
-            temp+= bin(toggleBit(int(val,2),0))[2:]
+        # temp = ''
+        # for val in block: 
+        #     temp+= bin(toggleBit(int(val,2),0))[2:]
+        temp = ''.join(map(lambda x: bin(toggleBit(int(x,2),0))[2:],block))
         resp.append(temp)
     return resp
 
