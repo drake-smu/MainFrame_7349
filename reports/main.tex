@@ -56,16 +56,52 @@ of the output produced by the AES-128 block cipher using NIST statistical test s
 Statistical tests for randomness take arbitrary length input sequence and analyze its distribution to see if it is random and contains no recognizable patterns or regularities. Usually these tests produce a real number between 0 and 1, the p-value, which shows a probability of finding the observed, or more extreme, results with respect to certain randomness properties of the given input. There exists some Notable software implementations, like NIST Statistical Test Suite or Diehard tests that can be used to analyze output of AES-128. 
 
 The NIST Test Suite consists of 15 tests specially designed to analyze
-binary sequences. All NIST tests examine randomness for the whole binary sequence. In addition to that several tests are also able to detect local regularities. 
+binary sequences:
+\begin{itemize}
+  \item Two frequency tests, for monobit and a block, that tests the randomness of a sequence of zeroes and ones
+  \item Two runs test: a simple test and a test for the longest run of ones in a block, that looks for uninterrupted sequence of identical bits in the tested message.
+  \item Binary matrix rank test, which checks for linear dependencies among fixed-length substrings of the original sequence.
+  \item Discrete Fourier transform test, which detects periodic  patterns that repeats and are near each other in the tested sequence
+  \item Overlapping and non-overlapping template matching tests, which detects generators that produce too many occurrences of a given non-periodic pattern
+  \item Maurer’s "Universal Statistical" test, that uses compression without loss to detect whether or not the compressed sequence has less information than the original message.
+  \item Linear complexity test, that determines whether or not the sequence is complex enough to be considered random.
+  \item Serial test,  that searches for number of occurrences of the $2^m$ m-bit overlapping patterns and makes sure that its frequency is approximately the same as would be expected for a uniformly distributed sequence.
+   \item Approximate entropy test, that compares the frequency of overlapping blocks of two consecutive lengths against the expected result for a random sequence.
+   \item Cumulative sums test, that determines whether the cumulative sum of the partial sequences occurring in the tested sequence is too large or too small relative to the expected behavior of that cumulative sum for random sequences.
+   \item Random excursions and random excursions variant tests, which determines if the number of visits to a particular state within a cycle deviates from what one would expect for a random sequence and detect deviations from the expected number of visits to various states in the random walk
+  
+\end{itemize}
+ All NIST tests examine randomness for the whole binary sequence. In addition to that several tests are also able to detect local regularities. 
 
 Aside from the NIST test suites, there are a few other test suites for testing the randomness of cryptographic pseudorandom numbers, such as the Dieharder test suit, SPRNG, and the tests mentioned in  (Statistical Testing of Cryptographic Randomness, Demirhan et al., 2016), which combines the Knuth, Helsinki, Diehard, and SPRNG test batteries.
 
 The reason for including these various tests is to cover a wider array of statistical methods in order to detect a lack of randomness in AES-128. The NIST test suite tests for various metrics such as entropy, frequency within a block, random excursions, etcetera. In contrast, the 26-test Dieharder battery tests for distributions, bit distances, overlapping permutations and sums, while the SPRNG battery (13 tests) covers more stochastic processes such as random walks and the Ising model (a
 mathematical model of ferromagnetism), and the Helsinki test looks for correlations and blocks within the pseudorandom data. The Knuth battery contains a different set of tests, with sme overlap with the others, however still including some unique tests. 
 
-In this paper, the SMU ManeFrame II supercomputer will be used to first generate the necesary datasets consisting of nine different categories of data, then ManeFrame II will evaluate each algorithm of the NIST statistical test suite against each of the nine categories of data sets. ManeFrame's supercomuting capabilities will be leveraged to generate nine data for each statistical test.
+\section{Experiments}
+
+The system we've employed to run our experiments consist of 4 blocks:
+
+\begin{enumerate}
+  \item Plaintext generator will be used to first generate the necessary datasets consisting of nine different categories of data
+  \item AES-128 Cipher will be used then to encrypt plaintext messages
+  \item NIST tests suite will be used to run basic tests against encrypted messages.
+  \item Diehard tests suite will serve as a next, more advanced, level of tests. 
+\end{enumerate}
+
+All four components are schematically represented in \autoref{HighLevelSchema}. We will run all modules on the SMU ManeFrame II cluster to get as big of a chance to catch any non-random pattern in encypted messages as we can.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=3in]{imgs/HighLevelSchema.png}
+\caption{Schematic layout of major components of the system}
+\label{HighLevelSchema}
+\end{figure}
 
 The nine categories of datasets have been selected because of their usefulness in evaluating the randomness of an algorithm's output. These nine categories are 128-bit key avalanche, Cipher Block Chaining Mode, Plaintext Avalanche, Low Density Plaintext, Low Density 128-Bit Keys, High Density Plaintext, High Density 128-Bit Keys, Plaintext/Ciphertext Correlation, and Random Plaintext/Random 128-Bit Keys.
+
+All our code is written in Python and C programming languages. For NIST test suite, we will use modified Ilja Gerhardt's implementation \footnote{NIST implementation starter kit https://bit.ly/2Gkjdu1}. For Diehard test suite, we will use Robert G. Brown’s Dieharder implementation of this suite. \footnote{Dieharder implementation https://bit.ly/2Sm325J}. Both implementations do require some additional work from our side to make it run on SMU ManeFrame II cluster. 
+
 %\cite{testsuite2}
 %bibtex is not working on this cite but we can fix that later!
 
