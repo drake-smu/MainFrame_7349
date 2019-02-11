@@ -124,8 +124,9 @@ The Random Plaintext dataset consists of 300 sequences. Each sequence is made of
 \subsubsection{Plaintext/Ciphertext Correlation}
 The Plaintext/Ciphertext Correlation is generated in order to study how plaintext-ciphertext pairs relate. 300 sequences were again generated, with a block length of 8,257, following the methods seen in \autoref{sssec:RPK}. The original plaintext is then XOR'd with the produced ciphertext, producing the dataset for analysis.
 	
+\subsection{Analysis}
 
-All our code is written in Python and C programming languages. For NIST test suite, we will use modified Ilja Gerhardt's implementation \footnote{NIST implementation starter kit https://bit.ly/2Gkjdu1}. For Diehard test suite, we will use Robert G. Brown’s Dieharder implementation of this suite. \footnote{Dieharder implementation https://bit.ly/2Sm325J}. Both implementations do require some additional work from our side to make it run on SMU ManeFrame II cluster. 
+All tests are implemented Python and C programming languages. For NIST test suite, we use modified Ilja Gerhardt's implementation \footnote{NIST implementation starter kit https://bit.ly/2Gkjdu1}. For Diehard test suite, we use Robert G. Brown’s Dieharder implementation of this suite. \footnote{Dieharder implementation https://bit.ly/2Sm325J}. Both implementations require some additional work from our side to run on SMU ManeFrame II cluster. 
 
 %\cite{testsuite2}
 %bibtex is not working on this cite but we can fix that later!
