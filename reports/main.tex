@@ -91,7 +91,8 @@ The system we've employed to run our experiments consist of 4 blocks:
 
 All four components are schematically represented in \autoref{HighLevelSchema}. We will run all modules on the SMU ManeFrame II cluster to get as big of a chance to catch any non-random pattern in encypted messages as we can.
 
-\begin{figure}[h]
+% capital h for HERE
+\begin{figure}[H]
 \centering
 \includegraphics[width=3in]{imgs/HighLevelSchema.png}
 \caption{Schematic layout of major components of the system}
@@ -101,8 +102,8 @@ All four components are schematically represented in \autoref{HighLevelSchema}. 
 %The nine categories of datasets have been selected because of their usefulness in evaluating the randomness of an algorithm's output. These nine categories are 128-bit key avalanche, Cipher Block Chaining Mode, Plaintext Avalanche, Low Density Plaintext, Low Density 128-Bit Keys, High Density Plaintext, High Density 128-Bit Keys, Plaintext/Ciphertext Correlation, and Random Plaintext/Random 128-Bit Keys.
 
 \subsection{AES Datasets}
-The nine categories of datasets have been selected because of their usefulness in evaluating the randomness of an algorithm's output.
-
+%The nine categories of datasets have been selected because of their usefulness in evaluating the randomness of an algorithm's output.
+The following six categories of encrypted datasets have been selected because of their usefulness in evaluating the randomness of an algorithm's output.
 \subsubsection{Low Density 128-Bit Key} 
  
 The Low Density 128-Bit Key dataset consists of 300 sequences. Each sequence is made up of 8,257 ciphertext blocks. The ciphertext block is computed using a random plaintext block (unique to the individual sequence) and a low density 128-bit key. The first block utilizes a 128-key of all unset bits. Blocks 2-129 use a key consisting of 127 unset bits and one set bit, rotating the set bit across all 128-bit positions. For blocks 130-8,257, the key consists of 126 unset bits and two set bits, rotating the set bits in all unique combination across the 128-bit positions. All blocks are computed in ECB mode.
@@ -118,9 +119,10 @@ The High Density 128-Bit Key dataset consists of 300 sequences. Each sequence is
 \subsubsection{High Density Plaintext}
 The High Density Plaintext dataset consists of 300 sequences. Each sequence is made up of 8,257 ciphertext blocks. The ciphertext block is computed using a random 128-bit key (unique to the individual sequence) and a high density plaintext block. The first plaintext block consists of 128 set bits. Blocks 2-129 plaintext consisting of all set bits and one unset bit, rotating the unset bit across all 128-bit positions. For blocks 130-8,257, the plaintext block consists of two unset bits and 126 set bits, rotating the unset bits in all unique combination across the 128-bit positions. All blocks are computed in ECB mode.
 
-\subsubsection{Random Plaintext/Random 128-Bit Key}
+\subsubsection{Random Plaintext/Random 128-Bit Key} \label{sssec:RPK}
+The Random Plaintext dataset consists of 300 sequences. Each sequence is made of 8,257 ciphertext blocks. To make each sequence, a random 128-bit key is first produced. Then that key is concatenated with 8,257 random plaintext blocks in ECB mode to generate the ciphertext sequence. 
 \subsubsection{Plaintext/Ciphertext Correlation}
-	
+The Plaintext/Ciphertext Correlation is generated in order to study how plaintext-ciphertext pairs relate. 300 sequences were again generated, with a block length of 8,257, following the methods seen in \autoref{sssec:RPK}. The original plaintext is then XOR'd with the produced ciphertext, producing the dataset for analysis.
 	
 
 All our code is written in Python and C programming languages. For NIST test suite, we will use modified Ilja Gerhardt's implementation \footnote{NIST implementation starter kit https://bit.ly/2Gkjdu1}. For Diehard test suite, we will use Robert G. Brown’s Dieharder implementation of this suite. \footnote{Dieharder implementation https://bit.ly/2Sm325J}. Both implementations do require some additional work from our side to make it run on SMU ManeFrame II cluster. 
