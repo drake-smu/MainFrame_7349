@@ -77,7 +77,7 @@ binary sequences:
 Aside from the NIST test suites, there are a few other test suites for testing the randomness of cryptographic pseudorandom numbers, such as the Dieharder test suit, SPRNG, and the test suite mentioned in  (Statistical Testing of Cryptographic Randomness, Demirhan et al., 2016), which combines the Knuth, Helsinki, Diehard, and SPRNG test batteries.
 
 The reason for including these various tests is to cover a wider array of statistical methods in order to detect a lack of randomness in AES-128. The NIST test suite tests for various metrics such as entropy, frequency within a block, random excursions, etcetera. In contrast, the 26-test Dieharder battery tests for distributions, bit distances, overlapping permutations and sums, while the SPRNG battery (13 tests) covers more stochastic processes such as random walks and the Ising model (a
-mathematical model of ferromagnetism), and the Helsinki test looks for correlations and blocks within the pseudorandom data. The Knuth battery contains a different set of tests, with sme overlap with the others, however still including some unique tests. 
+mathematical model of ferromagnetism), and the Helsinki test looks for correlations and blocks within the pseudorandom data. The Knuth battery contains a extends the testing scope by including additional unique tests. 
 
 \section{Experiments}
 
@@ -90,7 +90,7 @@ The system of experiments employed in this study consist of 4 blocks:
   \item Diehard/Dieharder tests suite then serves as a final, more stringent, level of tests. 
 \end{enumerate}
 
-All four components are schematically represented in \autoref{HighLevelSchema}. We will run all modules on the SMU ManeFrame II cluster to get as big of a chance to catch any non-random pattern in encypted messages as we can.
+All four components are schematically represented in \autoref{HighLevelSchema}. All modules run on the SMU ManeFrame II cluster, maximizing block creation capacity. The extensive datasets of cypherblocks give an accurate indication whether any non-random patterns in encrypted messages are due to AES encryption or statistical outliers.
 
 % capital h for HERE
 \begin{figure}[H]
