@@ -12,7 +12,7 @@ key = bitarray(low_density_generator(128)[100]).tobytes()
 
 cipher = AES.new(key,AES.MODE_ECB)
 random_txt = Random.new().read(AES.block_size) # b'0123456789abcdef'
-print(random_txt)
+# print(random_txt)
 cypher_block = cipher.encrypt(random_txt)
 
 print(cypher_block)
