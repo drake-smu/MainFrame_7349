@@ -14,13 +14,13 @@ def aes_cbc_encrypt(IV, key, data, mode=AES.MODE_CBC):
 
 def loopfun(n=16):
     key = get_random_bytes(16)
-    txt = str().zfill(128)
+    txt = str().zfill(16)
     IV = "0"*16
     for i in range(n):
         CT = (aes_cbc_encrypt(IV=IV, key=key, data=txt))
-        return(CT)
+        print(CT)
         # Help!!! How do I get this fixed? Must make the ciphertext
-        IV = bitarray.bitarray(CT)
+        IV = (CT)
 
 
-print(loopfun(2))
+(loopfun(n = 128))
