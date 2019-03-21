@@ -18,7 +18,8 @@ def loopfun(n=16):
     IV = "0"*16
     for i in range(n):
         CT = (aes_cbc_encrypt(IV=IV, key=key, data=txt))
-        print(CT)
+        return(CT)
+        # Help!!! How do I get this fixed? Must make the ciphertext
         IV = bitarray.bitarray(CT)
 
 
