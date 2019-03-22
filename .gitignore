@@ -125,3 +125,6 @@ resources/.DS_Store
 # IDE
 .idea
 *.iml
+
+# STS
+src/sts-2.1.2/experiments/*
