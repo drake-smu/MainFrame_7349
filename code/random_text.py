@@ -11,11 +11,11 @@ key = get_random_bytes(16)
 cipher = AES.new(key,AES.MODE_ECB)
 
 random_txt = random_generator() # b'0123456789abcdef'
-print(random_txt)
+#print(random_txt)
 cypher_block = cipher.encrypt(random_txt)
 
 # print(random_generator())
 
 
 print(cypher_block)
-print(cipher.decrypt(cypher_block))
+#print(cipher.decrypt(cypher_block))

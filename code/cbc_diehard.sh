@@ -1,8 +1,10 @@
 #!/bin/bash
-#python cbc_mode.py > ~/tmp/tmp.txt
-#sed "s/'/ /g" ~/tmp/tmp.txt
-rm ~/tmp/cbc.input
-for ((i=0;i<=30000;i++)); do
-    python cbc_mode.py  >> ~/tmp/cbc.input
-done
-cat ~/tmp/cbc.input |  sed "s/'/ /g" | sed 's/^.\{2\}//'| awk '{a=a s $0;s=""}END{print a}' | dieharder -a
+cbc_looper(){
+    for ((i=0;i<=30000;i++)); do
+         python cbc_mode.py |  sed "s/'/ /g" | sed 's/^.\{2\}//'| awk '{a=a s $0;s=""}END{print a}'
+
+    done
+}
+cbc_looper | ~/MainFrame_7349/src/sts-2.1.2/assess 1000000
+cbc_looper | dieharder -a
+
