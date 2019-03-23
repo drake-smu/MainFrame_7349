@@ -3,29 +3,34 @@ from Crypto.Cipher import AES
 from bitarray import bitarray
 from Crypto import Random
 
-iv = Random.get_random_bytes(8)
-
 ## Our text generators
 from shift_test import  low_density_generator,high_density_generator
-
-key = bitarray(high_density_generator(128)[100]).tobytes()
-
-cipher = AES.new(key,AES.MODE_ECB)
-random_txt = Random.new().read(AES.block_size) # b'0123456789abcdef'
-#print(random_txt)
-cypher_block = cipher.encrypt(random_txt)
-
-# print(cypher_block)
-# print(cipher.decrypt(cypher_block))
 
 def generate_random_sets(n=1):
     sets = []
     for i in range(n):
         temp_rand = Random.new().read(AES.block_size)
         sets.append(temp_rand)
+    
     return sets
 
-def high_density_key(sets=300):
+def hd_text(sets=300):
+    output = []
+    keys = generate_random_sets(sets)
+    hd_text_blocks = high_density_generator(128)
+    for key in keys:
+        cipher = AES.new(key,AES.MODE_ECB)
+        temp_set = {
+            "key": key,
+            "blocks": []
+        }
+        for text_block in hd_text_blocks:
+            cipher_block = cipher.encrypt(text_block)
+            temp_set["blocks"].append(cipher_block)
+        output.append(temp_set)
+    return output
+
+def hd_key(sets=300):
     output = []
     keys = high_density_generator(128)
     hd_keys = [bitarray(v).tobytes() for v in keys]
@@ -42,4 +47,3 @@ def high_density_key(sets=300):
         output.append(temp_set)
     
     return output
-
