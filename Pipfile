@@ -10,6 +10,8 @@ pylint = "*"
 pprint = "*"
 bitarray = "*"
 pycrypto = "*"
+scipy = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.7"
