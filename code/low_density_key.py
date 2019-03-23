@@ -1,4 +1,3 @@
-
 from Crypto.Cipher import AES
 from bitarray import bitarray
 from Crypto import Random
@@ -16,4 +15,4 @@ random_txt = Random.new().read(AES.block_size) # b'0123456789abcdef'
 cypher_block = cipher.encrypt(random_txt)
 
 print(cypher_block)
-print(cipher.decrypt(cypher_block))
+#print(cipher.decrypt(cypher_block))
