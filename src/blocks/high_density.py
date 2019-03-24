@@ -4,7 +4,7 @@ from bitarray import bitarray
 from Crypto import Random
 
 ## Our text generators
-from density_generators import  low_density_generator,high_density_generator
+from blocks.density_generators import  low_density_generator,high_density_generator
 
 def generate_random_sets(n=1):
     sets = []

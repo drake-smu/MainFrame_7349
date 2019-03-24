@@ -496,7 +496,7 @@ def testall(bits):
     print('monobitfrequencytest\t\t\t', monobitfrequencytest(bits))
     print('blockfrequencytest\t\t\t', blockfrequencytest(bits, 3))
     print('runstest\t\t\t\t', runstest(bits))
-    print("longestrunones10000\t\t",longestrunones10000(bits, m=100))
+    print("longestrunones10000\t\t\t",longestrunones10000(bits, m=100))
     print("binarymatrixranktest\t\t\t",binarymatrixranktest(bits,3,3))
     print('spectraltest\t\t\t\t', spectraltest(bits))
     print('nonoverlappingtemplatematching\t\t',nonoverlappingtemplatematchingtest(bits, '1001', 10))
