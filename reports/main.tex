@@ -10,8 +10,12 @@
 \usepackage{url}
 \usepackage{outlines}
 \usepackage{blindtext}
+\usepackage{caption} \captionsetup[table]{skip=10pt}
 %\usepackage[backend=biber,style=authoryear]{biblatex}
 %\addbibresource{bibliography.bib}
+
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
 
 \begin{document}
 
@@ -127,11 +131,129 @@ The Plaintext/Ciphertext Correlation is generated in order to study how plaintex
 	
 \subsection{Analysis}
 
-All tests are implemented Python and C programming languages. For NIST test suite, we use modified Ilja Gerhardt's implementation \footnote{NIST implementation starter kit https://bit.ly/2Gkjdu1}. For Diehard test suite, we use Robert G. Brown’s Dieharder implementation of this suite. \footnote{Dieharder implementation https://bit.ly/2Sm325J}. Both implementations require some additional work from our side to run on SMU ManeFrame II cluster. 
+All tests are implemented Python and C programming languages. For NIST test suite, we've got and modified software recommended in paper by Lawrence Bassham and others \cite{nisttests}. For Diehard test suite, we use Robert G. Brown’s Dieharder implementation of this suite. \footnote{Dieharder implementation https://bit.ly/2Sm325J}. Both implementations require some additional work from our side to run on SMU ManeFrame II cluster.
 
-%\cite{testsuite2}
-%bibtex is not working on this cite but we can fix that later!
+\subsection{Results}
 
-%\printbibliography 
+The results of applying NIST tests are depicted in \autoref{nistresults1}, \autoref{nistresults2} and \autoref{nistresults3}. Each row corresponds to the statistical tests applied. The second column in a P-value that was calculated using a chi-square test, that is used to test the homogeneity of P-values of a given statistical test. The third column is the proportion of tests sequences that passed.
+
+\begin{center}
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{P-VALUE} & \textbf{PROPORTION} & \textbf{STATISTICAL TEST} \\ \hline
+0.637119         & 19/20               & NonOverlappingTemplate    \\ \hline
+0.534146         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.035174         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.350485         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.012650         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.275709         & 19/20               & NonOverlappingTemplate    \\ \hline
+0.834308         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.834308         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.048716         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.213309         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.911413         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.964295         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.534146         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.534146         & 19/20               & NonOverlappingTemplate    \\ \hline
+0.350485         & 19/20               & NonOverlappingTemplate    \\ \hline
+0.025193         & 19/20               & NonOverlappingTemplate    \\ \hline
+0.637119         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.834308         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.911413         & 20/20               & NonOverlappingTemplate    \\ \hline
+0.739918         & 20/20               & NonOverlappingTemplate    \\ \hline
+\end{tabular}
+\caption{First 20 rows of results of applying NonOverlappingTemplate test to AES-128 cipher output.}
+\label{nistresults1}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{P-VALUE} & \textbf{PROPORTION} & \textbf{STATISTICAL TEST} \\ \hline
+0.437274         & 13/13               & RandomExcursions          \\ \hline
+0.025193         & 13/13               & RandomExcursions          \\ \hline
+0.275709         & 13/13               & RandomExcursions          \\ \hline
+0.275709         & 13/13               & RandomExcursions          \\ \hline
+0.006196         & 13/13               & RandomExcursions          \\ \hline
+0.637119         & 13/13               & RandomExcursions          \\ \hline
+0.275709         & 13/13               & RandomExcursions          \\ \hline
+0.162606         & 13/13               & RandomExcursions          \\ \hline
+0.162606         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.437274         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.090936         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.834308         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.162606         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.162606         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.437274         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.964295         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.637119         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.637119         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.637119         & 12/13               & RandomExcursionsVariant   \\ \hline
+0.437274         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.090936         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.275709         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.275709         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.162606         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.048716         & 13/13               & RandomExcursionsVariant   \\ \hline
+0.637119         & 13/13               & RandomExcursionsVariant   \\ \hline
+\end{tabular}
+\caption{Results of applying RandomExcursions and RandomExcursionsVariant tests to AES-128 cipher output.}
+\label{nistresults2}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{P-VALUE} & \textbf{PROPORTION} & \textbf{STATISTICAL TEST} \\ \hline
+0.437274         & 19/20               & Frequency                 \\ \hline
+0.035174         & 20/20               & BlockFrequency            \\ \hline
+0.911413         & 19/20               & CumulativeSums            \\ \hline
+0.834308         & 19/20               & CumulativeSums            \\ \hline
+0.162606         & 20/20               & Runs                      \\ \hline
+0.162606         & 20/20               & LongestRun                \\ \hline
+0.213309         & 19/20               & Rank                      \\ \hline
+0.739918         & 20/20               & FFT                       \\ \hline
+0.437274         & 20/20               & OverlappingTemplate       \\ \hline
+0.834308         & 20/20               & Universal                 \\ \hline
+0.964295         & 20/20               & ApproximateEntropy        \\ \hline
+0.066882         & 20/20               & Serial                    \\ \hline
+0.012650         & 20/20               & Serial                    \\ \hline
+0.275709         & 19/20               & LinearComplexity          \\ \hline
+\end{tabular}
+\caption{Results of applying rest of the NIST statistical test for random to AES-128 cipher output.}
+\label{nistresults3}
+\end{table}
+\end{center}
+
+We have truncated number NonOverlappligTemplate rows from the \autoref{nistresults3} to 20 but this does not change the overall results. As you can see, NIST test suite hasn't found any abnormalities or patterns in bytes generated by AES-128 cipher with p-values exceeding 0.05 which indicates that  generated ciphertext cannot be distinguished from random. 
+
+\section{Conclusion}
+We were able to perform a vast number of tests on a sequences of bytes produced by AES-128 cipher. We not only ran a standard tests, described in famous NIST standard \cite{nisttests} but also ran an extended version of the Diehard suite \cite{diehardtests}. 
+ 
+
+\begin{thebibliography}{9}
+
+\bibitem{nisttests} 
+Lawrence Bassham (NIST), Andrew Rukhin (NIST), Juan Soto (NIST), James Nechvatal (NIST), Miles Smid (NIST), Elaine Barker (NIST), Stefan Leigh (NIST), Mark Levenson (NIST), Mark Vangel (NIST), David Banks (NIST), N. Heckert (NIST), James Dray (NIST). 
+\textit{A Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications}. 
+April 2010.
+
+\bibitem{diehardtests} 
+George Marsaglia. 
+\textit{The Marsaglia Random Number CDROM including the Diehard Battery of Tests of Randomness}. 
+Florida State University. 1995.
+
+\end{thebibliography}
 
 \end{document}

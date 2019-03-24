@@ -128,3 +128,5 @@ resources/.DS_Store
 
 # STS
 src/sts-2.1.2/experiments/*
+src/sts-2.1.2/assess
+src/sts-2.1.2/obj/*
