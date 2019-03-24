@@ -6,7 +6,7 @@ from pprint import pprint
 from bitarray import bitarray
 import time, sys
 
-samples = high_density.hd_key()
+samples = high_density.hd_text()
 # pprint(sample)
 # i = Random.get_random_bytes(AES.block_size)
 # a = bitarray()
@@ -15,6 +15,9 @@ samples = high_density.hd_key()
 # print(b)
 sbits = ''
 sbytes = bytearray()
+
+print(len(samples))
+print(len(samples[0]["blocks"]))
 for sample in samples:
     for bit_set in sample["blocks"]:
         testbits = bitarray()
@@ -24,3 +27,4 @@ for sample in samples:
     # print(bytes(bit_set), testbits.tobytes())
 # print(len(sbytes))
 sys.stdout.buffer.write(sbytes)
+# pprint(sbytes)

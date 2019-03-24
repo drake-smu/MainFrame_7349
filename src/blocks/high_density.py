@@ -17,7 +17,8 @@ def generate_random_sets(n=1):
 def hd_text(sets=300):
     output = []
     keys = generate_random_sets(sets)
-    hd_text_blocks = high_density_generator(128)
+    text_blocks = high_density_generator(128)
+    hd_text_blocks = [bitarray(v).tobytes() for v in text_blocks]
     for key in keys:
         cipher = AES.new(key,AES.MODE_ECB)
         temp_set = {

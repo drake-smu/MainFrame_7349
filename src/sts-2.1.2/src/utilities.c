@@ -393,7 +393,7 @@ openOutputStreams(int option)
 			sprintf(statsDir, "experiments/%s/%s/stats.txt", generatorDir[option], testNames[i]);
 			sprintf(resultsDir, "experiments/%s/%s/results.txt", generatorDir[option], testNames[i]);
 			if ( (stats[i] = fopen(statsDir, "w")) == NULL ) {	/* STATISTICS LOG */
-				printf("ERROR: LOG FILES COULD NOT BE OPENED.\n");
+				printf("ERROR1: LOG FILES COULD NOT BE OPENED.\n");
 				printf("       MAX # OF OPENED FILES HAS BEEN REACHED = %d\n", numOfOpenFiles);
 				printf("-OR-   THE OUTPUT DIRECTORY DOES NOT EXIST.\n");
 				exit(-1);
@@ -401,7 +401,7 @@ openOutputStreams(int option)
 			else
 				numOfOpenFiles++;
 			if ( (results[i] = fopen(resultsDir, "w")) == NULL ) {	/* P_VALUES LOG   */
-				 printf("ERROR: LOG FILES COULD NOT BE OPENED.\n");
+				 printf("ERROR2: LOG FILES COULD NOT BE OPENED.\n");
 				 printf("       MAX # OF OPENED FILES HAS BEEN REACHED = %d\n", numOfOpenFiles);
 				 printf("-OR-   THE OUTPUT DIRECTORY DOES NOT EXIST.\n");
 				 exit(-1);

@@ -15,9 +15,13 @@ samples = high_density.hd_key()
 # print(b)
 sbits = ''
 sbytes = bytearray()
+print(len(samples))
+print(len(samples[0]["blocks"]))
 for sample in samples:
+    
     for bit_set in sample["blocks"]:
         testbits = bitarray()
+        
         testbits.frombytes(bit_set)
         sbits += testbits.to01()
         sbytes.extend(bytes(bit_set))
