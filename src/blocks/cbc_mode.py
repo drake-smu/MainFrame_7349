@@ -1,6 +1,6 @@
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
-
+import time, sys
 
 def aes_cbc_encrypt(IV, key, data, mode=AES.MODE_CBC):
     aes = AES.new(key, mode, IV)
@@ -14,7 +14,7 @@ def loopfun(n=16):
     IV = "0"*16
     for i in range(n):
         CT = (aes_cbc_encrypt(IV=IV, key=key, data=txt))
-        print(CT)
+        sys.stdout.buffer.write(CT)
         IV = (CT)
 
 

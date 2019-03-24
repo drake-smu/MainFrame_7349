@@ -12,9 +12,11 @@ sample = high_density.hd_key(1)
 # b = a.to01()
 # print(b)
 sbits = ''
+sbytes =bytearray()
 for bit_set in sample[0]["blocks"]:
     testbits = bitarray()
     testbits.frombytes(bit_set)
     sbits += testbits.to01()
+    print(bytearray(bit_set), testbits.tobytes())
 
-randtest.testall(sbits)
+#randtest.testall(sbits)
