@@ -1,12 +1,12 @@
 from Crypto.Cipher import AES
 from Crypto import Random
 from randomtests import randtest
-from blocks import high_density
+from blocks import low_density
 from pprint import pprint
 from bitarray import bitarray
 import time, sys
 
-samples = high_density.hd_text(10)
+samples = low_density.ld_text(10)
 # pprint(sample)
 # i = Random.get_random_bytes(AES.block_size)
 # a = bitarray()
