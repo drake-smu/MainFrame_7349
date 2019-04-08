@@ -6,7 +6,7 @@ from pprint import pprint
 from bitarray import bitarray
 import time, sys
 
-samples = high_density.hd_key(1)
+samples = high_density.hd_key()
 # pprint(sample)
 # i = Random.get_random_bytes(AES.block_size)
 # a = bitarray()
