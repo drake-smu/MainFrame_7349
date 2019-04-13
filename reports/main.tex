@@ -138,7 +138,7 @@ All tests are implemented Python and C programming languages. For NIST test suit
 The results of applying NIST tests are depicted in \autoref{nistresults1}, \autoref{nistresults2} and \autoref{nistresults3}. Each row corresponds to the statistical tests applied. The second column in a P-value that was calculated using a chi-square test, that is used to test the homogeneity of P-values of a given statistical test. The third column is the proportion of tests sequences that passed.
 
 \begin{center}
-\begin{table}
+\begin{table}[H]
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|c|c|l|}
@@ -171,7 +171,7 @@ The results of applying NIST tests are depicted in \autoref{nistresults1}, \auto
 \end{center}
 
 \begin{center}
-\begin{table}
+\begin{table}[H]
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|c|c|l|}
@@ -210,7 +210,7 @@ The results of applying NIST tests are depicted in \autoref{nistresults1}, \auto
 \end{center}
 
 \begin{center}
-\begin{table}
+\begin{table}[H]
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|c|c|l|}
@@ -241,7 +241,7 @@ We have truncated number NonOverlappligTemplate rows from the \autoref{nistresul
 Results of applying Dieharder statistical tests for randomness can be found in \autoref{dieharderesults1}, \autoref{dieharderesults2} and \autoref{dieharderesults3}
 
 \begin{center}
-\begin{table}
+\begin{table}[H]
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|l|l|l|}
@@ -284,7 +284,7 @@ sts\_serial                            & 0.23906065 & PASSED \\ \hline
 \end{center}
 
 \begin{center}
-\begin{table}
+\begin{table}[H]
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|l|l|l|}
@@ -330,7 +330,7 @@ rgb\_lagged\_sum                       & 0.99766683 & WEAK   \\ \hline
 \end{center}
 
 \begin{center}
-\begin{table}
+\begin{table}[H]
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|l|l|l|}
@@ -393,9 +393,20 @@ dab\_monobit2                          & 0.69171441 & PASSED \\ \hline
 \end{table}
 \end{center}
 
+\subsection{Code}
+All the code and presentation materials can be found on \href{https://urlzs.com/kUsF}{GitHub}. The project is divided into following folders:
+
+\begin{itemize}
+  \item \textbf{src} NIST, Diehard and Plaintext Generator code can be found in this directory.
+  \item \textbf{results} here you will find CSV tables with results.
+  \item \textbf{reports} all presentation materials can be found here.
+  \item \textbf{resources} we have collected some useful literature in this folder.
+  \item \textbf{submissions} paper drafts and other submitted presentation materials.
+   \item \textbf{notes} notes from internal ideas and discussions within the group. 
+\end{itemize}
+
 \section{Conclusion}
-We were able to perform a vast number of tests on a sequences of bytes produced by AES-128 cipher. We not only ran a standard tests, described in famous NIST standard \cite{nisttests} but also ran an extended version of the Diehard suite \cite{diehardtests}. 
- 
+We were able to perform a vast number of tests on a sequences of bytes produced by AES-128 cipher. Not only we ran standard suite with 15 tests which are described in famous NIST standard \cite{nisttests} but also ran an extended version of the Diehard suite \cite{diehardtests}. We have not found any significant deviation from randomness in sequences  of bytes produced by AES-128 even after running our tests against a multi-gigabyte output of the cipher for multiple days. Thus we conclude that AES-128 produces sequences of bytes that look random and thus are secured against brute-force attacks. 
 
 \begin{thebibliography}{9}
 
@@ -408,6 +419,21 @@ April 2010.
 George Marsaglia. 
 \textit{The Marsaglia Random Number CDROM including the Diehard Battery of Tests of Randomness}. 
 Florida State University. 1995.
+
+\bibitem{diehardtests} 
+Haydar Demirhan, Nihan Bitirim
+\textit{Statistical Testing of Cryptographic Randomness}. 
+Journal of Statisticians: Statistics and Actuarial Sciences. 2016.
+
+\bibitem{diehardtests} 
+Juan Soto
+\textit{Randomness Testing of the AES Candidate Algorithms}. 
+National Institute of Standards and Technology.
+
+\bibitem{diehardtests} 
+Juan Soto, Lawrence Bassham
+\textit{Randomness Testing of the Advanced Encryption Standard Finalist Candidates}. 
+National Institute of Standards and Technology. 2000.
 
 \end{thebibliography}
 
