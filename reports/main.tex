@@ -80,6 +80,25 @@ binary sequences:
 
 Aside from the NIST test suites, there are a few other test suites for testing the randomness of cryptographic pseudorandom numbers, such as the Dieharder test suit, SPRNG, and the test suite mentioned in  (Statistical Testing of Cryptographic Randomness, Demirhan et al., 2016), which combines the Knuth, Helsinki, Diehard, and SPRNG test batteries.
 
+There is overlap between the NIST Statistical Test Suite and Diehard tests since both of these tests have binary matrix rank tests. However the NIST tests focus on bitlevel randomness and the suitability of a random number generator for cryptography. The tests that are overlapping with STS in the dieharder package – which our group used to run Diehard tests- were rewritten in C by Robert G. Brown to make sure there were no copyright issues and all tests used are attributed to the various authors of that suite. The Dieharder library is an open source project. There are original tests and timing operations inserted by Robert G. Brown in addition to the test available in STS or Diehard. These tests are a check of random numbers using a derived statistic. The Diehard Suite itself was developed by George Marsaglia and was published in 1995. The purely Diehard tests were the tests with “diehard” before the name of the test: ie the first 19 tests from the output found in table 6. A summary of the tests that are performed:
+
+\begin{itemize}
+  \item The "Birthday spacings" Test is named after the birthday paradox – the paradox that there are seemingly more matching birthdays between n people in a room than expected. The test choses random points on a large interval and the spacings between the points are expected to be asymptoticallyexponentially distributed.
+  \item The "Overlapping permutations" Test analyzes sequences of five consecutive random numbers. It is expected that the 120 possible orderings should occur with statistically equal probability.
+  \item The "Ranks of matrices" Test selects a set number of left-most bits from a randomly chosen number to form a matrix over {0,1}, and then determines the rank of said matrix. The rank is then determined. Ranks of less than 28 are considered rare.
+  \item The "Monkey" Tests are named after the monkey theorem – a theorem than states that a monkey hitting random keys on a typewriter for an infinite amount oftime will produce, for example, the entirety of Shakespeare’s work. The tests treatsequences of some number of bits as "words", counts the overlapping words in a stream, and then determines whether the number of “words” that don’t appear follow a normal distribution (the expected outcome).
+  \item The "Parking lot" Test tests whether a "crash" occurs when you randomly park a car in a 100x100 square. If we plot n attempts with k number of successful parked cars, the behavior if it matches to a random number generator should show that k should average 3523 with sigma 21.9.
+  \item The "Minimum distance" Test randomly places 8000 points in a 10000x10000 square, then finds the minimum distance between the pairs. The square of the minimum distance should beexponentially distributed.
+  \item The "Random spheres" Test randomly choses 4000 points in a cube of edge 1000, centers a sphere on each point, whose radius is the minimum distance to another point, then determines the distribution of the smallest sphere’s volume. We expect that this volume should be exponentially distributed with a certain mean.
+  \item The "squeeze" Test multiplies $2^{31}$ by random floats on (0,1) until the value 1 is reached. This is repeated 100000 times and the distribution of the number of floats is observed and compared to the expected distribution. 
+  \item The "Overlapping sums" Test generates a long sequence of random floats on (0,1), adds sequences of 100 consecutive floats, and then observes the distributionof the sums.  The sums are expected to be normally distributed.
+  \item The "Runs" Test generates a long sequence of random floats on (0,1) and then counts ascending and descending runs. The observed counts are expected to follow a certain distribution.
+  \item The "craps" Test "plays" 200000 games ofcraps, counts the wins and the number of throws per game, and then observed the counts of each game. The counts are expected to follow a certain distribution.
+  
+ \end{itemize}
+  
+All the above tests return a pvalue with. A bit stream will fail the test at a .05 level if p $<$ 0.025 or p $>$ 0.975
+
 The reason for including these various tests is to cover a wider array of statistical methods in order to detect a lack of randomness in AES-128. The NIST test suite tests for various metrics such as entropy, frequency within a block, random excursions, etcetera. In contrast, the 26-test Dieharder battery tests for distributions, bit distances, overlapping permutations and sums, while the SPRNG battery (13 tests) covers more stochastic processes such as random walks and the Ising model (a
 mathematical model of ferromagnetism), and the Helsinki test looks for correlations and blocks within the pseudorandom data. The Knuth battery contains a extends the testing scope by including additional unique tests. 
 
@@ -138,7 +157,7 @@ All tests are implemented Python and C programming languages. For NIST test suit
 The results of applying NIST tests are depicted in \autoref{nistresults1}, \autoref{nistresults2} and \autoref{nistresults3}. Each row corresponds to the statistical tests applied. The second column in a P-value that was calculated using a chi-square test, that is used to test the homogeneity of P-values of a given statistical test. The third column is the proportion of tests sequences that passed.
 
 \begin{center}
-\begin{table}[H]
+\begin{table}
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|c|c|l|}
@@ -171,7 +190,7 @@ The results of applying NIST tests are depicted in \autoref{nistresults1}, \auto
 \end{center}
 
 \begin{center}
-\begin{table}[H]
+\begin{table}
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|c|c|l|}
@@ -210,7 +229,7 @@ The results of applying NIST tests are depicted in \autoref{nistresults1}, \auto
 \end{center}
 
 \begin{center}
-\begin{table}[H]
+\begin{table}
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|c|c|l|}
@@ -241,7 +260,7 @@ We have truncated number NonOverlappligTemplate rows from the \autoref{nistresul
 Results of applying Dieharder statistical tests for randomness can be found in \autoref{dieharderesults1}, \autoref{dieharderesults2} and \autoref{dieharderesults3}
 
 \begin{center}
-\begin{table}[H]
+\begin{table}
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|l|l|l|}
@@ -284,7 +303,7 @@ sts\_serial                            & 0.23906065 & PASSED \\ \hline
 \end{center}
 
 \begin{center}
-\begin{table}[H]
+\begin{table}
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|l|l|l|}
@@ -330,7 +349,7 @@ rgb\_lagged\_sum                       & 0.99766683 & WEAK   \\ \hline
 \end{center}
 
 \begin{center}
-\begin{table}[H]
+\begin{table}
 \renewcommand{\arraystretch}{1.2}
 \centering
 \begin{tabular}{|l|l|l|}
